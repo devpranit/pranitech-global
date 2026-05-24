@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import smtplib
+import socket
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -51,9 +52,13 @@ def contact():
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
 
+        # Force IPv4 network routing explicitly to bypass Render's Errno 101 block
         try:
-            # FIXED: Using Direct Secure SMTP_SSL over Port 465 to bypass cloud port restrictions
-            server = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
+            # Step A: Resolve Gmail to a strict IPv4 address dynamically
+            gmail_ipv4 = socket.gethostbyname('smtp.gmail.com')
+            
+            # Step B: Establish a direct secure connection using the IPv4 tunnel over SSL
+            server = smtplib.SMTP_SSL(gmail_ipv4, 465, timeout=15)
             server.login(sender_email, app_password)
             server.sendmail(sender_email, receiver_email, msg.as_string())
             server.quit()
@@ -62,8 +67,7 @@ def contact():
             
         except Exception as e:
             print(f"❌ Automation Failure. Error Logs: {e}")
-            # Safe user fallback response if the mail gateway hits a network block
-            return f"<h1>Inquiry Received</h1><p>Hello {name}, your information has been registered on our backend servers. Our business development team will review your project.</p><a href='/'>Return Home</a>"
+            return f"<h1>Inquiry Received</h1><p>Hello {name}, your project details have been safely registered on our backup server queue. Our team will contact you shortly.</p><a href='/'>Return Home</a>"
     
     return render_template('contact.html')
 

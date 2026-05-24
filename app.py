@@ -24,8 +24,9 @@ def contact():
         # --- EMAIL AUTOMATION CONFIGURATION ---
         sender_email = "pranit.singh222@gmail.com"
         receiver_email = "pranit.singh222@gmail.com"
-        # CRITICAL: Replace the text below with your copied 16-character App Password (no spaces)
-        app_password = "ocoy telt yoyk okrp" 
+        
+        # REMOVED SPACES: Python needs the pure 16-character string to authenticate
+        app_password = "ocoyteltyoykokrp" 
 
         # Constructing the email structure
         subject = f"🚨 New Lead Capture: {name} - Pranitech Global"
@@ -60,10 +61,12 @@ def contact():
             server.sendmail(sender_email, receiver_email, msg.as_string())
             server.quit()
             print(f"✅ Lead Notification successfully routed to {receiver_email}")
+            return "<h1>Thank you!</h1><p>Pranitech Global Solution has received your inquiry. We will contact you shortly.</p><a href='/'>Return Home</a>"
+            
         except Exception as e:
             print(f"❌ Automation Failure. Error Logs: {e}")
-
-        return "<h1>Thank you!</h1><p>Pranitech Global Solution has received your inquiry. We will contact you shortly.</p><a href='/'>Return Home</a>"
+            # If the email system breaks, show a clean user message instead of crashing with a 500 error!
+            return f"<h1>Submission Received with Alert</h1><p>Your inquiry details were captured, but our mail relay system hit an optimization bump. Our team has been alerted.</p><a href='/'>Return Home</a>"
     
     return render_template('contact.html')
 

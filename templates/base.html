@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranitech Global Solution | Enterprise Digital Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-main: #004a44; 
+            --brand-accent: #86bc25; 
+            --bg-light: #ffffff;
+            --text-dark: #1a1a1a;
+            --section-gap: 100px;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            background: var(--bg-light); 
+            color: var(--text-dark); 
+            scroll-behavior: smooth; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        nav { 
+            background: rgba(255, 255, 255, 0.98); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        nav .logo { font-weight: 800; font-size: 1.4rem; color: var(--brand-main); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+        nav .links a { color: var(--text-dark); margin-left: 30px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        nav .links a:hover { color: var(--brand-accent); }
+
+        .section-container { max-width: 1200px; margin: auto; padding: var(--section-gap) 20px; }
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 50px; border-left: 6px solid var(--brand-accent); padding-left: 20px; color: var(--brand-main); }
+
+        .btn-primary { 
+            background: var(--brand-accent); color: white; padding: 18px 45px; 
+            border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;
+            transition: 0.3s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-primary:hover { background: var(--brand-main); transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+
+        footer { background: #111; color: #eee; padding: 80px 5% 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 50px; }
+        
+        /* Social Media Icons Styling */
+        .social-links a { 
+            color: #999; 
+            font-size: 1.5rem; 
+            margin-right: 20px; 
+            transition: 0.3s ease; 
+            text-decoration: none;
+        }
+        .social-links a:hover { color: var(--brand-accent); transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">PRANITECH <span style="color:var(--brand-accent)">GLOBAL SOLUTION</span></a>
+        <div class="links">
+            <a href="/">HOME</a>
+            <a href="/services">OFFERINGS</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 style="color:var(--brand-accent)">PRANITECH GLOBAL</h3>
+                <p style="color:#999; font-size: 0.9rem;">Empowering global enterprises with scalable digital infrastructure and marketplace intelligence.</p>
+            </div>
+            <div>
+                <h4 style="color:white; margin-bottom:20px;">Enterprise Solutions</h4>
+                <ul style="list-style:none; padding:0; font-size: 0.9rem; color:#999; line-height:2.5;">
+                    <li>Web & App Engineering</li>
+                    <li>E-commerce Management</li>
+                    <li>Data Processing & AI</li>
+                    <li>Managed Cybersecurity</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color:white; margin-bottom:20px;">Connect With Us</h4>
+                <div class="social-links">
+                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                </div>
+                <p style="color:#999; font-size: 0.9rem; margin-top: 20px;">
+                    📧 hello@pranitechglobal.com<br>
+                    📍 Pune, Maharashtra, India
+                </p>
+            </div>
+        </div>
+        <div style="text-align:center; font-size: 0.8rem; border-top: 1px solid #333; padding-top: 30px; color:#666;">
+            &copy; 2026 Pranitech Global Solution. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
